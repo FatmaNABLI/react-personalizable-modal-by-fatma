@@ -1,8 +1,7 @@
 {
   "name": "react-personalizable-modal-by-fatma",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
+  "version": "0.1.5",
+  "peerDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -34,5 +33,21 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "Ce projet vous permet de créer une modale d'une maière simple. Vous pouvez la personaliser en ajoutant de l'animation et vos propres couleurs. ## Utilisation du composant Modal",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FatmaNABLI/react-personalizable-modal-by-fatma.git"
+  },
+  "keywords": [
+    "react",
+    "modal"
+  ],
+  "author": "Fatma NABLI",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FatmaNABLI/react-personalizable-modal-by-fatma/issues"
+  },
+  "homepage": "https://github.com/FatmaNABLI/react-personalizable-modal-by-fatma#readme"
 }

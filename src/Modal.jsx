@@ -1,7 +1,7 @@
 import './Modal.css';
 
-export function Modal(props){
-    let {isOpen, setIsOpen} = props;
+function Modal(props){
+    let {isOpen, setIsOpen,titre,texte} = props;
   
     const modal =  document.querySelector('.modal');
     let style = {};
@@ -25,9 +25,21 @@ export function Modal(props){
             classModalStart = "modal--startTop";
         }
     }
+    let typeModal="default";
+    if(props.hasOwnProperty("type")){
+        if(props.type == "SUCCESS")
+            typeModal="success";
+        else if(props.type == "ERROR")
+            typeModal="error";
+    }
     style.transition = props.animation ?   "0.3s all ease-in-out" : ""
     const showHideClassName = isOpen ? "modal modal--open" : `modal ${classModalStart}`;
     const showHideOverlay = isOpen ? "overlay display-block" : "overly display-none";
+    let icone = true;
+    if(props.hasOwnProperty("icone")){
+        icone = props.icone;
+    }
+
     return(
         <>
             {/* Close modal by outside click */}
@@ -35,17 +47,26 @@ export function Modal(props){
             }} >
             </div>
             <div className={showHideClassName} style={style}>
-                <button className="modal__close" onClick={() =>{setIsOpen(false)}}>
+                <button className={`modal__close ${typeModal}`} onClick={() =>{setIsOpen(false)}}>
                     X
                 </button>
-                <div className="modal__header">
-                    <h2 className="modal__header__title">Titre de la fenetre</h2>
+                <div className={`modal__header  ${typeModal}`}>
+                    <h2 className="modal__header__title">{titre}</h2>
                 </div>
                 <div className="modal__body">
-                    <p>Utilisateur ajouté avec succès!</p>
+                    {typeModal=="success" && icone && <svg className= "success-icone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        {/* <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}
+                        <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+                    </svg>}
+                    
+                    {typeModal=="error"&& icone && <svg className= "error-icone" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        {/* <!--! Font Awesome Pro 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --> */}
+                        <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+                    </svg>}
+                    <p>{texte}</p>
                 </div>
                 <div className="modal__footer">
-                    <button className="modal__footer__button" onClick={() =>{ 
+                    <button className={`modal__footer__button ${typeModal}`} onClick={() =>{ 
                     setIsOpen(false)}}>
                         close
                     </button>
@@ -54,3 +75,4 @@ export function Modal(props){
         </>
     )
 }
+export default Modal;
